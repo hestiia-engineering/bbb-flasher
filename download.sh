@@ -1,5 +1,4 @@
 #!/bin/sh
-#download the latest release from github using the github cli
 
 BOARD=myeko-board
 NAME=myeko-image

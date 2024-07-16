@@ -1,0 +1,13 @@
+[Unit]
+Description=Flasher service
+
+[Service]
+# PreExecStart=/usr/sbin/flash.sh
+ExecStart=/usr/sbin/flash.sh
+RemainAfterExit=yes
+User = root
+Group = root
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
