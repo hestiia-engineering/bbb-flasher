@@ -2,7 +2,6 @@
 Description=Flasher service
 
 [Service]
-# PreExecStart=/usr/sbin/flash.sh
 ExecStart=/usr/sbin/flash.sh
 RemainAfterExit=yes
 User = root
