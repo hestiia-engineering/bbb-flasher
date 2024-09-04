@@ -65,17 +65,9 @@ download_image
 # Check if the download was successful
 if [ $? -ne 0 ]; then
     echo "Failed to download the image" 1>&2
+    set_led_bri 0
     exit 1
 fi
-
-# Blink the LEDs to signal that the setup is complete
-echo Blinking the LEDs...
-for i in {1..10} ; do
-    set_led_bri 0
-    sleep 0.5
-    set_led_bri 1
-    sleep 0.5
-done
 
 # Done
 set_led_bri 1
