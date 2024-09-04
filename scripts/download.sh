@@ -39,7 +39,7 @@ if [ -f $IMAGES_DIR/$PATTERN_BMAP ] && [ -f $IMAGES_DIR/$PATTERN_BZ2 ]; then
 fi
 
 echo "Downloading $NEW_TAG"
-gh release download -p $PATTERN_BMAP -p $PATTERN_BZ2 -R $REPO --clobber
+gh release download --dir $IMAGES_DIR -p $PATTERN_BMAP -p $PATTERN_BZ2 -R $REPO --clobber
 if [ $? -ne 0 ]; then
     echo "Failed to download the image" 1>&2
     [ -f $IMAGES_DIR/$PATTERN_BMAP ] && rm $IMAGES_DIR/$PATTERN_BMAP
