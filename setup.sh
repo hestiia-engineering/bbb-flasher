@@ -6,10 +6,18 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
+# Check we are running in the correct directory
+# The flasher.service file should be in the same directory as this script
+if [ ! -f flasher.service ]; then
+    echo "This script must be run from the directory containing flasher.service" 1>&2
+    exit 1
+fi
+
 # Install gh dependency
 echo Installing gh...
-apt-get update
-apt-get install -y gh
+./scripts/install-gh-cli.sh
+
+
 # Check if the installation was successful
 if [ $? -ne 0 ]; then
     echo "Failed to install gh" 1>&2
@@ -29,14 +37,6 @@ if [ $? -ne 0 ]; then
     echo "Failed to log in to GitHub" 1>&2
     exit 1
 fi
-
-# Clone the flasher repo
-echo Cloning the flasher repo...
-cd /root
-gh repo clone https://github.com/hestiia-engineering/BBB_Bootstrap
-mv BBB_Bootstrap flasher
-cd flasher
-echo Cloned the flasher repo to /root/flasher
 
 # Install the scripts to /usr/sbin
 echo Installing the scripts...
