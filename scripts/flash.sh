@@ -1,34 +1,22 @@
 #!/bin/sh
 
-cd /root/
+IMAGES_DIR=/root/images
+RELEASE_FILE=$IMAGES_DIR/release.txt
 
-echo "[Checking new version]"
-./download.sh
+echo "Checking for the latest release..."
+download_image
 
-hmi_print() {
-    /home/debian/.pyenv/shims/python3.10 -m hestiia.cli hmi print "$@"
-}
+RELEASE=$(cat $RELEASE_FILE)
 
-hmi_roll() {
-    /home/debian/.pyenv/shims/python3.10 -m hestiia.cli hmi roll "$@"
-}
-
-RELEASE=$(cat release.txt)
-
-echo "[Flashing] $RELEASE"
-hmi_roll "FLASHING $RELEASE"
-echo "You have 5 seconds to cancel the operation (Press Ctrl+C to cancel)..." 
-sleep 5
-
-hmi_print FLASHING
+echo "Flashing $RELEASE !"
 bmaptool copy *.sdimg.bz2 /dev/mmcblk1
 
 # Check if the flashing was successful
 if [ $? -ne 0 ]; then
-    hmi_print ERROR
     echo "[Error] Flashing failed"
+    set_led_bri 0
     exit 1
 fi
 
-echo "[Done]"
-hmi_print OK
+echo "Flashing complete"
+set_led_bri 1
