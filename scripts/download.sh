@@ -16,6 +16,12 @@ REPO=hestiia-engineering/yocto-cooker-myeko
 LINE=$(gh release list -R $REPO | grep Latest)
 NEW_TAG=$(echo $LINE | awk '{print $1}')
 
+# If we failed to fetch the latest release tag, exit
+if [ -z "$NEW_TAG" ]; then
+    echo "Failed to fetch the latest release tag. Skipping." 1>&2
+    exit 1
+fi
+
 # Fetch the current release tag
 if [ -f $RELEASE_FILE ]; then
     CUR_TAG=$(cat $RELEASE_FILE)
