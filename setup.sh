@@ -17,6 +17,8 @@ fi
 echo Installing gh...
 ./scripts/install-gh-cli.sh
 
+echo Installing dependencies...
+apt-get install bmap-tools -y
 
 # Check if the installation was successful
 if [ $? -ne 0 ]; then
