@@ -4,13 +4,24 @@ Scripts to flash a beaglebone black with a yocto image.
 
 ## How to prepare a BBB flasher
 
-1. You need am SD card with the official debian [image](https://www.beagleboard.org/distros/am335x-11-7-2023-09-02-4gb-microsd-iot)
+1. You need an SD card with the official debian [image](https://www.beagleboard.org/distros/am335x-11-7-2023-09-02-4gb-microsd-iot)
 
-2. Start the BBB (press user button to swith between EMMC and SD card while pluggin the BBB)
+    * You can use the [etcher](https://www.balena.io/etcher/) tool to flash the image on the SD card
+    * You can also use the raspberri pi imager tool to flash the image on the SD card
+
+2. Start the BBB with the SD card inserted, while pressing the button next to the SD card slot to boot from the SD card
 
 3. Connect to it over ssh or serial (user: debian, password: temppwd)
 
 4. Clone this repository and run setup.sh
+
+```
+# Public repo, no PAT needed
+git clone https://github.com/hestiia-engineering/bbb-flasher.git
+cd bbb-flasher
+sudo ./setup.sh
+# Enter PAT when asked
+```
 
 The setup script will:
 
