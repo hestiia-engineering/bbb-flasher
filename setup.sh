@@ -34,15 +34,6 @@ echo "Enter your GitHub token: "
 read -s token
 echo $token > /root/.gh-token
 
-# Log in to gh
-echo Logging in to GitHub...
-gh auth login --with-token < /root/.gh-token
-# Check if the login was successful
-if [ $? -ne 0 ]; then
-    echo "Failed to log in to GitHub" 1>&2
-    exit 1
-fi
-
 # Install the scripts to /usr/sbin
 echo Installing the scripts...
 cp scripts/flash.sh /usr/sbin/flash

@@ -11,6 +11,15 @@ TYPE=dev
 PATTERN_BMAP=$NAME-$TYPE-$BOARD.sdimg.bmap
 PATTERN_BZ2=$NAME-$TYPE-$BOARD.sdimg.bz2
 
+# Login to GitHub
+echo Logging in to GitHub...
+gh auth login --with-token < /root/.gh-token
+# Check if the login was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to log in to GitHub. Skipping" 1>&2
+    exit 1
+fi
+
 # Fetch the latest release tag
 REPO=hestiia-engineering/yocto-cooker-myeko
 LINE=$(gh release list -R $REPO | grep Latest)
