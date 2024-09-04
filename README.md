@@ -1,35 +1,33 @@
-# BBB_Bootstrap
+# bbb-flasher
 
-## How to
+Scripts to flash a beaglebone black with a yocto image.
 
-A SD carte with the official debian [image](https://www.beagleboard.org/distros/am335x-11-7-2023-09-02-4gb-microsd-iot)
+## How to prepare a BBB flasher
 
-Start the BBB (press user button to swith between EMMC and SD card while pluggin the BBB)
+1. You need am SD card with the official debian [image](https://www.beagleboard.org/distros/am335x-11-7-2023-09-02-4gb-microsd-iot)
 
-Install github cli [link](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
+2. Start the BBB (press user button to swith between EMMC and SD card while pluggin the BBB)
 
-Install bmaptools on debian: 
-```bash
-sudo apt install bmap-tools
-```
+3. Connect to it over ssh or serial (user: debian, password: temppwd)
 
-login using github cli as root (UNSAFE, need improvement):
-```bash
-gh auth login
-```
+4. Clone this repository and run setup.sh
 
-As root :
- checkout this repo in /root/
+The setup script will:
 
-launch the ./flash script and wait for completion
+* install all dependencies
+* ask you for a github PAT to fetch the latest release
+* download the latest yocto image from the latest release of hestiia-os
+* install all the scripts
+* install the flasher.service and enable it at boot
 
-Reboot the beagle and remove the SD card.
-The yocto image is now installed. 
+## How to flash a BBB
 
+1. Insert the SD card in the BBB
 
-## TODO: 
+2. Power on the BBB while pressing the user button to boot from the SD card
 
-* A some fancy led blinking to show there is activity
-* Add somme feedback
-* Add a script to launch the flash process at boot
-* Handle any non-nominal event
+3. The BBB will flash the image (and the led will flash with activity)
+
+4. The LEDs will be all on when the flashing is done, or all off if an error occured.
+
+5. Unplug: the BBB is ready
