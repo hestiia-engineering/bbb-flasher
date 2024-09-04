@@ -2,6 +2,14 @@
 
 # Taken from https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 
+# Check if gh is installed
+if ! type -p gh >/dev/null; then
+    echo "gh is not installed: installing..."
+else
+    echo "gh is already installed"
+    exit 0
+fi
+
 (type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
 && sudo mkdir -p -m 755 /etc/apt/keyrings \
 && wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
