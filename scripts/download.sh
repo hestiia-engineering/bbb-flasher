@@ -21,6 +21,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Fetch the latest release tag
+echo Fetching the latest release tag...
 REPO=hestiia-engineering/yocto-cooker-myeko
 LINE=$(gh release list -R $REPO | grep Latest)
 NEW_TAG=$(echo $LINE | awk '{print $1}')
