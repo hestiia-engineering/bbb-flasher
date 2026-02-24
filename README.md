@@ -1,3 +1,12 @@
+> [!WARNING]
+> **This repository is archived.** `bbb-flasher` was the original method for creating a BBB
+> flasher: an SD card that, when booted, would automatically flash `hestiia-os` onto the
+> BeagleBone Black's eMMC. It has been superseded by the flasher image system built into
+> [`hestiia-os`](https://github.com/hestiia-engineering/hestiia-os) itself under
+> [`meta-hestiia/meta-flasher`](https://github.com/hestiia-engineering/hestiia-os/tree/main/meta-hestiia/meta-flasher),
+> which uses [`flasher-script`](https://github.com/hestiia-engineering/flasher-script) to drive
+> the flash process. Refer to `hestiia-os` for the current flashing workflow.
+
 # bbb-flasher
 
 Scripts to flash a beaglebone black with a yocto image.
